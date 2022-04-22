@@ -19,6 +19,8 @@ target 'PokemonApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
   target 'PokemonAppTests' do
     inherit! :complete
     # Pods for testing
