@@ -23,7 +23,7 @@ const PokeBag = ({navigation}) => {
     setDataPokeBag(dataFromLocal);
   };
 
-  const renderdata = ({item}) => {
+  const renderdata = ({item, index}) => {
     console.log('item', item);
     return (
       <View>
@@ -34,9 +34,22 @@ const PokeBag = ({navigation}) => {
           enableNickName={true}
           nickName={item.nickName}
           enableDelete={true}
+          onPressDelete={() => onCheckDeleteData(item, index)}
         />
       </View>
     );
+  };
+
+  const onCheckDeleteData = async (data, index) => {
+    let dataFromLocal = await AsyncStorage.getItem('POKEBAG');
+    dataFromLocal = JSON.parse(dataFromLocal);
+
+    if (index > -1) {
+      dataFromLocal.splice(index, 1);
+    }
+    setDataPokeBag(dataFromLocal);
+    let stringData = JSON.stringify(dataFromLocal);
+    let setDataLocal = await AsyncStorage.setItem('POKEBAG', stringData);
   };
 
   return (
