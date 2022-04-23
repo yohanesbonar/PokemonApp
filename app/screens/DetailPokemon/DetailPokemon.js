@@ -31,9 +31,7 @@ import {Modalize} from 'react-native-modalize';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const DetailPokemon = ({route, navigation}) => {
-  console.log('DetailPokemon Nav ', route, navigation);
   const params = route.params;
-  console.log('DetailPokemon params ', params);
 
   const [dataMoves, setDataMoves] = useState([]);
   const [dataAbilities, setDataAbilities] = useState([]);
@@ -68,9 +66,6 @@ const DetailPokemon = ({route, navigation}) => {
       let responseMo = await getMovesFetch(params.data.id);
       let responseAb = await getAbilityFetch(params.data.id);
       let responseTy = await getTypesFetch(params.data.id);
-      console.log('response getMovesFetch', responseMo);
-      console.log('response getAbilityFetch', responseAb);
-      console.log('response getTypesFetch', responseTy);
       if (responseMo && responseMo.results && !_.isEmpty(responseMo.results)) {
         setDataMoves(responseMo.results);
         setIsLoadingM(false);
@@ -123,14 +118,10 @@ const DetailPokemon = ({route, navigation}) => {
 
   const onPressButtonSubmit = async () => {
     let getLocal = await AsyncStorage.getItem('POKEBAG');
-    console.log('getLocal', getLocal);
     let dataLocal = [];
     if (getLocal) {
-      console.log('1');
       dataLocal = JSON.parse(getLocal);
-      console.log('dataLocal 1', dataLocal);
     } else {
-      console.log('2');
       dataLocal = [];
     }
 
@@ -145,11 +136,9 @@ const DetailPokemon = ({route, navigation}) => {
     ];
 
     dataLocal = [...dataLocal, ...data];
-    console.log('dataLocal 2', dataLocal);
     let stringData = JSON.stringify(dataLocal);
     let setLocal = await AsyncStorage.setItem('POKEBAG', stringData);
     let getLocalAfterSet = await AsyncStorage.getItem('POKEBAG');
-    console.log(' getLocalAfterSet', getLocalAfterSet);
     onClose();
     navigation.navigate('PokeBag');
   };

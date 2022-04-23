@@ -8,8 +8,6 @@ import {ItemClick} from 'native-base/lib/typescript/components/composites/Typeah
 import CardItemPokemon from '../../components/molecules/CardItemPokemon';
 
 const PokeBag = ({navigation}) => {
-  console.log('Nav', navigation);
-
   const [dataPokeBag, setDataPokeBag] = useState([]);
 
   useEffect(() => {
@@ -19,12 +17,10 @@ const PokeBag = ({navigation}) => {
   const getData = async () => {
     let dataFromLocal = await AsyncStorage.getItem('POKEBAG');
     dataFromLocal = JSON.parse(dataFromLocal);
-    console.log('dataFromLocal ', dataFromLocal);
     setDataPokeBag(dataFromLocal);
   };
 
   const renderdata = ({item, index}) => {
-    console.log('item', item);
     return (
       <View>
         <CardItemPokemon

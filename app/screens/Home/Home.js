@@ -23,7 +23,6 @@ import HeaderToolbar from '../../components/molecules/HeaderToolbar';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Home = ({navigation}) => {
-  console.log('Nav', navigation);
   const [dataPokemon, setDataPokemon] = useState([]);
   const [triggerNext, setTriggerNext] = useState(false);
   const [emptyData, setEmptyData] = useState(false);
@@ -49,7 +48,6 @@ const Home = ({navigation}) => {
         offset: 20,
       };
       let response = await getPokemonFetch(params);
-      console.log('response getPokemon', response);
       setDataPokemon(
         response && response.results && _.size(response.results) > 0
           ? value == 'next'
