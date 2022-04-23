@@ -95,7 +95,7 @@ const Home = ({navigation}) => {
 
   return (
     <NativeBaseProvider style={{}}>
-      <HeaderToolbar title={'List of Pokemon'} />
+      <HeaderToolbar title={'Pokedex Pokemon'} />
       <FlatList
         renderItem={renderdata}
         data={dataPokemon}
