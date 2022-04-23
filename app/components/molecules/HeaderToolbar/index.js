@@ -4,14 +4,22 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Body, Header, Right, Title, Icon, ArrowBackIcon} from 'native-base';
 import _ from 'lodash';
 
-const HeaderToolbar = ({title, onPressBack}) => {
+const HeaderToolbar = ({
+  title,
+  onPressBack,
+  leftTitle,
+  titleButtonRight,
+  onPressButtonRight,
+}) => {
   return (
     <SafeAreaView style={{backgroundColor: '#0771CD', zIndex: 1}}>
       <View
         style={{
           alignItems: 'center',
-          flexDirection: onPressBack ? 'row' : null,
+          flexDirection: onPressBack || leftTitle ? 'row' : null,
           paddingBottom: 6,
+          paddingHorizontal: leftTitle ? 16 : null,
+          justifyContent: titleButtonRight ? 'space-between' : null,
         }}>
         {onPressBack && (
           <TouchableOpacity onPress={onPressBack}>
@@ -20,6 +28,11 @@ const HeaderToolbar = ({title, onPressBack}) => {
         )}
 
         <Text style={styles.containerTextTitle}>{title}</Text>
+        {onPressButtonRight && (
+          <TouchableOpacity onPress={onPressButtonRight}>
+            <Text style={styles.buttonRight}>{titleButtonRight}</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -38,6 +51,15 @@ const styles = StyleSheet.create({
   },
   containerTextTitle: {
     fontSize: 20,
+    color: '#FFF',
+    fontWeight: '600',
+    textAlign: 'center',
+    paddingBottom: 10,
+    paddingTop: 6,
+    textAlignVertical: 'center',
+  },
+  buttonRight: {
+    fontSize: 16,
     color: '#FFF',
     fontWeight: '600',
     textAlign: 'center',

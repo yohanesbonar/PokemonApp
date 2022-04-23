@@ -1,12 +1,24 @@
 import React from 'react';
 import {SafeAreaView, TouchableOpacity} from 'react-native';
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
-import {Body, Header, Right, Title} from 'native-base';
+import {Body, DeleteIcon, Header, Right, Title} from 'native-base';
 import _ from 'lodash';
 
-const CardItemPokemon = ({name, image, onPress, id}) => {
+const CardItemPokemon = ({
+  name,
+  image,
+  onPress,
+  id,
+  nickName,
+  enableDelete,
+  onPressDelete,
+  enableNickName
+}) => {
   return (
-    <TouchableOpacity style={styles.containerEachData} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.containerEachData}
+      onPress={onPress}
+      disabled={!onPress ? true : false}>
       <Image
         source={{
           uri:
@@ -17,7 +29,19 @@ const CardItemPokemon = ({name, image, onPress, id}) => {
         style={{height: 65, width: 60}}
         resizeMode="contain"
       />
-      <Text style={{fontWeight: '600'}}>{name}</Text>
+      <View style={{alignItems: 'center'}}>
+        {enableNickName && (
+          <Text style={{fontSize: 16, fontWeight: '600', marginBottom: 8}}>
+            {nickName}
+          </Text>
+        )}
+        <Text style={{fontWeight: '600'}}>{name}</Text>
+        {enableDelete && (
+          <TouchableOpacity onPress={onPressDelete} style={{paddingTop: 8}}>
+            <DeleteIcon style={{height: 24, width: 24}} />
+          </TouchableOpacity>
+        )}
+      </View>
     </TouchableOpacity>
   );
 };

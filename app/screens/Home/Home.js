@@ -20,13 +20,17 @@ import _ from 'lodash';
 import CardItemPokemon from '../../components/molecules/CardItemPokemon';
 import {getPokemon, getPokemonFetch} from '../../components/utils/network/poke';
 import HeaderToolbar from '../../components/molecules/HeaderToolbar';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Home = ({navigation}) => {
   console.log('Nav', navigation);
   const [dataPokemon, setDataPokemon] = useState([]);
   const [triggerNext, setTriggerNext] = useState(false);
   const [emptyData, setEmptyData] = useState(false);
-  useEffect(() => {
+  
+  useEffect( () => {
+    // let stringData = JSON.stringify([]);
+    // let setLocal = await AsyncStorage.setItem('POKEBAG', stringData);
     setDataPokemon([]);
     getData();
   }, []);
@@ -95,7 +99,12 @@ const Home = ({navigation}) => {
 
   return (
     <NativeBaseProvider style={{}}>
-      <HeaderToolbar title={'Pokedex Pokemon'} />
+      <HeaderToolbar
+        title={'Pokedex Pokemon'}
+        leftTitle={true}
+        titleButtonRight={'PokeBag'}
+        onPressButtonRight={() => navigation.navigate('PokeBag')}
+      />
       <FlatList
         renderItem={renderdata}
         data={dataPokemon}

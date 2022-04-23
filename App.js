@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './app/screens/Home/Home';
-import { DetailPokemon } from './app/screens';
+import {DetailPokemon, PokeBag} from './app/screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +18,11 @@ const App = () => {
         <Stack.Screen
           name="DetailPokemon"
           component={DetailPokemon}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PokeBag"
+          component={PokeBag}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
