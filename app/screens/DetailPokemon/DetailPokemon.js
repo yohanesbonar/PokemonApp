@@ -209,6 +209,7 @@ const DetailPokemon = ({route, navigation}) => {
   const modalizeRef = React.createRef(null);
 
   const onOpen = () => {
+    setValueTextInput('');
     modalizeRef.current?.open();
   };
 
